@@ -1,0 +1,76 @@
+
+<section id="wrapper" class="login-register">
+  <div class="login-box">
+      <div class="white-box">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+
+
+        </form>
+          <form id="login-form"  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" class="form-horizontal m-t-20" >
+              <div class="form-group ">
+                  <div class="col-xs-12">
+                      <h3>Iniciar Sesion</h3>
+                      <p class="text-muted">Sistema de ingreso de empleados.</p>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <label for="username" class="sr-only">Username</label>
+                  <input type="text" class="form-control" id="username" name="username"
+                  ngModel #username="ngModel" placeholder="Username" autofocus>
+              </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <label for="password" class="sr-only">Password</label>
+                  <input type="password" class="form-control" id="password" name="password"
+                  ngModel #password="ngModel" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group login-group-checkbox">
+                  <div class="col-md-5 col-xs-12">
+                      <div class="checkbox checkbox-primary">
+                        <input type="checkbox" id="lg_remember" name="remember" ngModel>
+                        <label for="lg_remember">Recordarme</label>
+                      </div>
+                  </div>
+                  <div class="col-md-7 col-xs-12 m-t-5 text-right"><a [routerLink]="[ './../recovery' ]" class="text-dark"><i class="fa fa-lock m-r-5"></i> Olvidaste tu contraseña?</a></div>
+                </div>
+
+              <div class="form-group text-center m-t-40">
+                  <div class="col-xs-12">
+                      <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Ingresar</button>
+                  </div>
+              </div>
+
+              <simple-notifications [options]="options"></simple-notifications>
+              <div class="toast" id="toast"></div>
+
+          </form>
+      </div>
+      <footer class="footer text-center">
+          <div class="social">
+              <a href="https://gt.linkedin.com/company/foxylabs" target="_blank" class="btn  btn-linkedin" data-toggle="tooltip" data-title="Visita nuestro LinkedIn"> <i aria-hidden="true" class="fa fa-linkedin"></i> </a>
+              <a href="https://www.facebook.com/foxylabs" target="_blank" class="btn  btn-facebook" data-toggle="tooltip" data-title="Visita nuestro Facebook"> <i aria-hidden="true" class="fa fa-facebook"></i> </a>
+              <a href="https://foxylabs.gt" target="_blank" class="btn btn-googleplus" data-toggle="tooltip" data-title="Visita nuestra pagina web"> <i aria-hidden="true" class="fa fa-globe"></i> </a>
+          </div>
+          2017 © FoxyLabs.
+      </footer>
+  </div>
+</section>
+
+
+<div class="modal fade" id="Loading">
+  <div class="modal-dialog">
+    <div class="text-center" style="margin-top:50%;">
+<loaders-css [loader]="'line-scale'" [loaderClass]="'loader1'" ></loaders-css>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+

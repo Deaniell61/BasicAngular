@@ -1,0 +1,177 @@
+<div id="wrapper">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
+      <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg "  href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+          <div class="top-left-part">
+              <a class="logo" href="index.html"><b><img src="../assets/images/fs-icon.png" alt="Home"></b><span id="apple-admin" class="hidden-xs"><img src="../assets/images/fs.png" alt="Home"></span></a>
+          </div>
+          <ul class="nav navbar-top-links navbar-left">
+            <li><a (click)="hideNav()" class="open-close hidden-xs waves-effect waves-light"><i class=" ti-menu"></i></a></li>
+
+            <!-- /.dropdown -->
+            <li class="dropdown" *ngIf="type=='tutor'" (click)="updateNotifications()"> <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-bell"></i> <span class="badge badge-xs badge-success" *ngIf="nNotifications>0">{{nNotifications}}</span></a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li *ngFor="let data of notifications">
+                        <a (click)="updateNotification(data.id)" [routerLink]="[ './tutor/alumnos' , 1 ]">
+                            <div> <i *ngIf="data.type==2" class="ti-check fa-fw"></i> <i *ngIf="data.type==1" class="ti-folder fa-fw"></i> {{data.title}}  </div>
+                        </a>
+                      <div class="divider"style="padding: 0px;margin: 0px;"></div>
+                    </li>
+
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+        </ul>
+          <ul class="nav navbar-top-links navbar-right pull-right">
+              <li>
+                  <form role="search" class="app-search hidden-xs">
+                      <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+              </li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{{((picture)?(picture):'https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png')}}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{((firstname!="null")?(firstname+' '):'')+((lastname!="null")?lastname:user)}}</b> </a>
+                  <ul class="dropdown-menu dropdown-user">
+                      <li *ngIf="type=='admin'"><a routerLinkActive="active"
+                        [routerLink]="[ './admin/profile' ]"><i class="ti-user"></i> Mi Perfil</a></li>
+                      <li *ngIf="type=='usuario'"><a routerLinkActive="active"
+                        [routerLink]="[ './usuario/profile' ]"><i class="ti-user"></i> Mi Perfil</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li *ngIf="type=='admin'"><a routerLinkActive="active"
+                        [routerLink]="[ './admin/config' ]"><i class="ti-settings"></i> Configuracion de Cuenta</a></li>
+                      <li *ngIf="type=='usuario'"><a routerLinkActive="active"
+                        [routerLink]="[ './usuario/config' ]"><i class="ti-settings"></i> Configuracion de Cuenta</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="/" (click)="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+                  </ul>
+                  <!-- /.dropdown-user -->
+              </li>
+              <!-- /.dropdown -->
+          </ul>
+      </div>
+      <!-- /.navbar-header -->
+      <!-- /.navbar-top-links -->
+      <!-- /.navbar-static-side -->
+  </nav>
+
+  <div class="navbar-default sidebar nicescroll" role="navigation">
+    <div class="sidebar-nav navbar-collapse collapse">
+
+<!-- inicia menu usuario -->
+    <ul *ngIf="type=='usuario'" class="nav" id="side-menu">
+      <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="Search..."> <span class="input-group-btn">
+        <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+        </span> </div>
+        <!-- /input-group -->
+    </li>
+    <li  class="nav-small-cap">Usuario</li>
+    <li> <a routerLinkActive="active"
+      [routerLink]="[ './usuario/dashboard' ]" class="waves-effect"><i class="icon-speedometer fa-fw"></i> Dashboard</a>
+    </li>
+      <!-- <li> <a routerLinkActive="active"
+        [routerLink]="[ './usuario/pedidos' ]" class="waves-effect"><i class="fa  fa-external-link-square fa-fw"></i> Pedidos</a>
+      </li> -->
+    </ul>
+   <!-- fin menu usuarios -->
+<!-- inicia menu administrador -->
+    <ul *ngIf="type=='admin'" class="nav" id="side-menu">
+      <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+          <div class="input-group custom-search-form">
+              <input type="text" class="form-control" placeholder="Search..."> <span class="input-group-btn">
+          <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+          </span> </div>
+          <!-- /input-group -->
+      </li>
+      <li  class="nav-small-cap">Administrador</li>
+      <li> <a routerLinkActive="active"
+        [routerLink]="[ './admin/dashboard' ]" class="waves-effect"><i class="icon-speedometer fa-fw"></i> Dashboard</a>
+      </li>
+      <li data-toggle="collapse" href="#Users"> <a  class="waves-effect"><i class=" fa fa-user fa-fw"></i> Usuarios<span class="fa arrow"></span>  </a>
+      </li><ul class="collapse nav nav-second-level" id="Users">
+          <li> <a routerLinkActive="active"
+            [routerLink]="[ './admin/usuarios' ]" class="waves-effect"><i class="fa fa-user fa-fw"></i> Usuarios</a>
+          </li>
+          <li> <a routerLinkActive="active"
+            [routerLink]="[ './admin/roles' ]" class="waves-effect"><i class="fa fa-users fa-fw"></i> Roles</a>
+          </li>
+        </ul>
+
+    </ul>
+<!-- fin menu administrador -->
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<div id="page-wrapper">
+  <div class="container-fluid">
+<router-outlet></router-outlet>
+  </div>
+</div>
+
+<div id="ChangePass"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Cambio de contraseña</h4>
+          </div>
+          <div class="modal-body">
+            <form id="passChange-form"  #passChange="ngForm" (ngSubmit)="updatePass(passChange.value)">
+              <div class="form-group col-xs-12 m-b-15">
+                    <label for="old_pass">Contraseña Actual</label>
+                    <input type="password" class="form-control" id="old_pass" name="old_pass" required
+                            ngModel #old_pass="ngModel" >
+                      <div *ngIf="old_pass.invalid && (old_pass.dirty || old_pass.touched)"
+                            class="alert alert-danger" role="alert">
+                          <small *ngIf="old_pass.errors.required">
+                              La Contraseña Actual es invalida
+                          </small>
+                      </div>
+              </div>
+
+              <div class="form-group col-xs-12 m-b-15">
+                    <label for="new_pass">Contraseña Nueva</label>
+                    <input type="password" class="form-control" id="new_pass" name="new_pass" required
+                            ngModel #new_pass="ngModel">
+                      <div *ngIf="new_pass.invalid && (new_pass.dirty || new_pass.touched)"
+                            class="alert alert-danger" role="alert">
+                          <small *ngIf="new_pass.errors.required">
+                              La Contraseña Nueva es invalida
+                          </small>
+                      </div>
+              </div>
+              <div class="form-group col-xs-12 m-b-15">
+                    <label for="new_pass2">Repita la Contraseña Nueva</label>
+                    <input type="password" class="form-control" id="new_pass2" name="new_pass2" required
+                            ngModel #new_pass2="ngModel">
+                      <div *ngIf="new_pass2.value != new_pass.value"
+                            class="alert alert-danger" role="alert">
+                          <small>
+                              Las contraseñas deben ser Iguales
+                          </small>
+                      </div>
+              </div>
+              <div class="form-group col-xs-12 text-right m-b-15">
+                  <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Cambiar Contraseña</button>
+              </div>
+          </form>
+
+          </div>
+          <div class="modal-footer" style="border:none;">
+
+          </div>
+      </div>
+  </div>
+
+
+
+</div>
+
+<div class="modal fade" id="Loading">
+  <div class="modal-dialog">
+    <div class="text-center" style="margin-top:50%;">
+<loaders-css [loader]="'line-scale'" [loaderClass]="'loader1'" ></loaders-css>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="row bg-title">
+    <div class="col-lg-12">
+        <h4 class="page-title">Edicion de Perfil</h4>
+        <ol class="breadcrumb">
+            <li><a href="#">Administrador</a></li>
+            <li><a href="#">Perfil</a></li>
+            <li class="active">Ver Perfil</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+<div class="col-xs-6 col-xs-offset-3 m-t-30 card" *ngIf="selectedUser">
+    <form id="edit-form"  #EditUserForm="ngForm" (ngSubmit)="updateUser(EditUserForm.value)">
+        <div *ngIf="selectedUser.picture!=null" class="form-group col-xs-6 col-xs-offset-3">
+            <img src="{{selectedUser.picture}}" id="imgAvatar" alt="Avatar" style="width:100%;">
+      </div>
+      <div class="col-xs-6 col-xs-offset-3 text-center" style="font-size: 24px;color:black">
+          <label><strong>{{selectedUser.firstname}}</strong></label>
+          <label><strong>{{selectedUser.lastname}}</strong></label>
+      </div>
+      <div class="col-xs-6 col-xs-offset-3 text-center">
+          <strong>{{selectedUser.description}}</strong>
+      </div>
+      <div class="col-xs-6 col-xs-offset-3 m-b-15 text-center">
+          <strong>{{selectedUser.age}}</strong>
+      </div>
+      <div class="form-group col-xs-12 m-b-15">
+            <label for="username">Nombre de usuario</label>
+            <input type="text" class="form-control" id="username" name="username" required
+                    ngModel #username="ngModel" [(ngModel)]="selectedUser.username" disabled>
+              <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                    class="alert alert-danger" role="alert">
+                  <small *ngIf="username.errors.required">
+                      El Usuario es invalido
+                  </small>
+              </div>
+        </div>
+
+        <div class="form-group col-xs-6 m-b-15">
+            <label for="phone">Telefono</label>
+            <input type="text" class="form-control" id="phone" name="phone" required
+                    ngModel #phone="ngModel" [(ngModel)]="selectedUser.phone" disabled>
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                    class="alert alert-danger" role="alert">
+                  <small *ngIf="phone.errors.required">
+                      El Usuario es invalido
+                  </small>
+              </div>
+        </div>
+        <div class="form-group col-xs-6 m-b-15">
+            <label for="work">Telefono Trabajo</label>
+            <input type="text" class="form-control" id="work" name="work" required
+                    ngModel #work="ngModel" [(ngModel)]="selectedUser.work" disabled>
+              <div *ngIf="work.invalid && (work.dirty || work.touched)"
+                    class="alert alert-danger" role="alert">
+                  <small *ngIf="work.errors.required">
+                      El Usuario es invalido
+                  </small>
+              </div>
+        </div>
+          <input type="hidden" class="form-control" id="id" name="id" required
+                  ngModel #id="ngModel" [(ngModel)]="selectedUser.id">
+
+      </form>
+  </div>
+  <simple-notifications [options]="options"></simple-notifications>
+
+
+<div class="modal fade" id="Loading">
+    <div class="modal-dialog">
+      <div class="text-center" style="margin-top:50%;">
+  <app-loader></app-loader>
+      </div>
+    </div>
+  </div>

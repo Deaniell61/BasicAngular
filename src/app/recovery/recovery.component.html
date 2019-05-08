@@ -1,0 +1,64 @@
+
+<section id="wrapper" class="login-register">
+  <div class="login-box">
+      <div class="white-box">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+            
+              
+        </form>
+          <form id="login-form"  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" class="form-horizontal m-t-20" >
+              <div class="form-group ">
+                  <div class="col-xs-12">
+                      <h3>Recuperacion de contraseña</h3>
+                      <p class="text-muted">Se le enviara un correo electronico con una nueva contraseña para que pueda ingresar.</p>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <label for="username" class="sr-only">Username</label>
+                  <input type="text" class="form-control" id="username" name="username"
+                  ngModel #username="ngModel" placeholder="Username">
+              </div>
+              </div>
+              <div class="form-group login-group-checkbox">
+                <div class="col-md-5 col-xs-12">
+                    <div class="checkbox checkbox-primary">
+                      <input type="checkbox" id="lg_remember" name="remember" ngModel>
+                    </div>
+                </div>
+                <div class="col-md-7 col-xs-12 m-t-5 text-right"><a [routerLink]="[ './../login' ]" class="text-dark"><i class="fa fa-unlock m-r-5"></i> Login</a></div>                  
+              </div>
+              
+              <div class="form-group text-center m-t-40">
+                  <div class="col-xs-12">
+                      <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Enviar</button>
+                  </div>
+              </div>
+              
+              <simple-notifications [options]="options"></simple-notifications>
+              <div class="toast" id="toast"></div>
+              
+          </form>
+      </div>
+      <footer class="footer text-center">
+          
+          2017 © FoxyLabs.
+      </footer>
+  </div>
+</section>
+
+
+<div class="modal fade" id="Loading">
+  <div class="modal-dialog">
+    <div class="text-center" style="margin-top:50%;">
+<loaders-css [loader]="'line-scale'" [loaderClass]="'loader1'" ></loaders-css>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+

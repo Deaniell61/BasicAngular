@@ -1,0 +1,5 @@
+// You just have uncomment the backend
+// export const path:any = { path:"http://colegios.thefoxylabs.com/" }
+// export const path:any = { path:"http://backend.josedanielrodriguez.com/presentacion/public" }
+// export const path:any = { path:"http://backend.foxylabs.xyz/presentacion/public" }
+// export const path:any = { path:"http://localhost/presentacion/backend/public" }
